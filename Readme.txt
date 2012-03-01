@@ -1,0 +1,54 @@
+Установка ULogin на IPBoard 3.1.4
+
+1. Скопировать папку uloginplugin в дирректорию /admin/sources/loginauth
+2. Создать в базе данных таблицу с именем prefix_ulogin. Вместо Prefix_ нужно написать префикс таблиц, который вы указали при установке (или опустить, если префикс не указывался)
+	Поля таблицы: 
+		ID - int, Auto Increment
+		ident - varchar, Not Null
+		id_user - int, Not Null 
+		seed - int, unsigned
+Это можно сделать, выполнив следующий скрипт в базе данных (опять же, заменив prefix_ на ваш префикс)
+
+CREATE TABLE `prefix_ulogin` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `ident` varchar(255) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `seed` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
+
+
+
+
+
+  
+3. Зайти в Админцентр
+4. На вкладке "Система" выбрать "Управление модулями авторизации"
+5. Добавить метод со следующими параметрами:
+	Название "uloginplugin"
+	Имя директории с файлами модуля "uloginplugin"
+	Модуль включен? "Да"
+	HTML код формы:
+
+		Зайдите на вашем форуме на страницу с формой авторизации при помощи браузера и нажмите "показать html-код страницы". Найдите в тексте поле с именем auth_key, скопируйте значение атрибута value.
+		Зайдите по адресу html://ulogin.ru/constructor.html и в поле "Адрес обратной ссылки на ваш сайт" пропишите:
+		http://адрес-вашего-форума/index.php?app=core&module=global&section=login&do=process&auth_key=value
+		где вместо value нужно вписать код, полученный на предыдущем шаге.
+
+		В поле "Код для вставки в страницу логина" появится код HTML-формы, который и требовалось получить.
+
+	HTML код формы для замены "нет"
+
+6. Зайти в редактор шаблонов в (Внешний вид->IP.Board)
+7. Выбрать шаблон globalTemplate
+8. В начале, после тега <head> вставить
+ <style type="text/css">
+      #uLogin img{ vertical-align: top !important;}
+  </style>
+9. Заменить код
+
+{$this->lang->words['new_user']}
+							<a href="{parse url="app=core&amp;module=global&amp;section=register" base="public"}" title='{$this->lang->words['register']}' id='register_link'>{$this->lang->words['register']}</a>
+							<a href="{parse url="app=core&amp;module=help" base="public"}" title='{$this->lang->words['view_help']}' rel="help" accesskey='6' class='right'>{parse replacement="help_icon"} {$this->lang->words['sj_help']}</a>
+
+на код для HTML-формы, полученный на шаге 5.
