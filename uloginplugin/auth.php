@@ -8,6 +8,7 @@
 	* @author	uLogin
 	* @link	http://ulogin.ru
 	* @contacts team@ulogin.ru
+	* @license GPL3
 	*/
 	
 	if ( ! defined( 'IN_IPB' ) )
