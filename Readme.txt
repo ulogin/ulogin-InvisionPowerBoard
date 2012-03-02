@@ -1,3 +1,19 @@
+=== uLogin - виджет авторизации через социальные сети ===
+Donate link: http://ulogin.ru/
+Tags: ulogin, login, social, authorization
+Requires at least: 3.1.4
+Tested up to: 3.1.4
+Stable tag: 1.7
+License: GPL3
+Форма авторизации uLogin через социальные сети. Улучшенный аналог loginza.
+
+== Description ==
+
+uLogin — это инструмент, который позволяет пользователям получить единый доступ к различным Интернет-сервисам без необходимости повторной регистрации,
+а владельцам сайтов — получить дополнительный приток клиентов из социальных сетей и популярных порталов (Google, Яндекс, Mail.ru, ВКонтакте, Facebook и др.)
+
+== Installation ==
+
 Установка ULogin на IPBoard 3.1.4
 
 1. Скопировать папку uloginplugin в дирректорию /admin/sources/loginauth
