@@ -115,6 +115,7 @@
 														'name'	=> $Login21,
 														'member_group_id'			=> 3,
 														'email'		=> $Email,
+														'joined'	=> time(),
 														'members_pass_salt'	=> $salt,
 														'members_pass_hash'		=> md5($hash),
 														'members_l_username'		=> $Login21,

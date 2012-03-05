@@ -2,7 +2,7 @@
 Donate link: http://ulogin.ru/
 Tags: ulogin, login, social, authorization
 Requires at least: 3.1.4
-Tested up to: 3.1.4
+Tested up to: 3.2.3
 Stable tag: 1.7
 License: GPL3
 Форма авторизации uLogin через социальные сети. Улучшенный аналог loginza.
@@ -14,7 +14,7 @@ uLogin — это инструмент, который позволяет пол
 
 == Installation ==
 
-Установка ULogin на IPBoard 3.1.4
+Установка ULogin на IPBoard
 
 1. Скопировать папку uloginplugin в дирректорию /admin/sources/loginauth
 2. Создать в базе данных таблицу с именем prefix_ulogin. Вместо Prefix_ нужно написать префикс таблиц, который вы указали при установке (или опустить, если префикс не указывался)
@@ -51,7 +51,8 @@ CREATE TABLE `prefix_ulogin` (
 		http://адрес-вашего-форума/index.php?app=core&module=global&section=login&do=process&auth_key=value
 		где вместо value нужно вписать код, полученный на предыдущем шаге.
 
-		В поле "Код для вставки в страницу логина" появится код HTML-формы, который и требовалось получить.
+		Появившийся в поле "Код для вставки в страницу логина" код скопируйте в любой текстовый редактор, и после текста "first_name,last_name,photo" добавьте ",email".
+		Это и есть код, который требовалось получить.
 
 	HTML код формы для замены "нет"
 
@@ -61,7 +62,21 @@ CREATE TABLE `prefix_ulogin` (
  <style type="text/css">
       #uLogin img{ vertical-align: top !important;}
   </style>
-9. Заменить код
+9. Для версии 3.2.3:
+
+После кода
+
+<a href='{parse url="app=core&amp;module=global&amp;section=login" base="public"}' title='{$this->lang->words['sign_in']}' id='sign_in' <if test="IPS_APP_COMPONENT == 'ccs'">class='no_ajax'</if>>{$this->lang->words['sign_in']}</a>&nbsp;&nbsp;&nbsp;
+								</li>
+
+добавить <li>код, полученный на шаге 5</li>
+
+
+
+
+Для версии 3.1.4:
+
+Заменить код
 
 {$this->lang->words['new_user']}
 							<a href="{parse url="app=core&amp;module=global&amp;section=register" base="public"}" title='{$this->lang->words['register']}' id='register_link'>{$this->lang->words['register']}</a>
